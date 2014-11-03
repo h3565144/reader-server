@@ -1,0 +1,50 @@
+.main
+  .header
+    %a{href: '/channels/new'}
+      add channel
+    %h3.title
+      Channels
+
+  %ul.channels
+    - @channels.each do |channel|
+      %li.channel
+        %img{src: "/channels/#{channel.id}/avatar?thumb=1"}
+        .name
+          = channel.name
+        %form{action: "/channels/#{channel.id}", method: 'post'}
+          %input{name: '_method', value: 'delete', type: 'hidden'}
+          %button
+            delete
+
+:scss
+  .main {
+    padding-left: 40px;
+  }
+  .header {
+    a {
+      float: right;
+    }
+  }
+  .header, .channels {
+    width: 300px;
+  }
+  .channels {
+    padding-left: 0;
+  }
+  .channel {
+    margin-top: 10px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+    .name {
+      display: inline-block;
+      width: 200px;
+      overflow: hidden;
+    }
+    form {
+      float: right;
+      margin: 0;
+    }
+  }

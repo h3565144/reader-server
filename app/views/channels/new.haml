@@ -1,0 +1,20 @@
+.container
+  %h1 New channel
+
+  %form{action: '/channels', method: 'post'}
+    - if @channel.errors.any?
+      #error_explanation
+        - count = @channel.errors.count
+        %h2= "#{count} #{count > 1 ? 'errors' : 'error'} prohibited this channel from being saved:"
+        %ul
+          - @channel.errors.full_messages.each do |msg|
+            %li= msg
+    .input-group
+      %input{name: 'channel[url]', placeholder: 'url'}
+      .input-group-btn
+        %button.btn.btn-primary
+          Save
+
+  %br
+    %a{href: '/'}
+      Back
