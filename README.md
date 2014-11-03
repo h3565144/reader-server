@@ -1,5 +1,3 @@
-== README
-
 ## deploy
 * heroku login
 * heroku create [NAME]
