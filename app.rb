@@ -52,8 +52,8 @@ class API < Grape::API
 
   get '/api/channels' do
     channels = Channel.order(id: :asc).limit(20)
-    if params[:last_id] && params[:last_id] =~ /\S+/
-      channels = channels.where(:id.gte => params[:last_id]) 
+    if params[:after_id] && params[:after_id] =~ /\S+/
+      channels = channels.where(:id.gte => params[:after_id]) 
     end
     Jbuilder.new do |json|
       json.channels channels do |channel|
@@ -64,8 +64,8 @@ class API < Grape::API
 
   get '/api/items' do
     items = Item.order(id: :asc).limit(20)
-    if params[:last_id] && params[:last_id] =~ /\S+/
-      items = items.where(:id.gte => params[:last_id]) 
+    if params[:after_id] && params[:after_id] =~ /\S+/
+      items = items.where(:id.gte => params[:after_id]) 
     end
     Jbuilder.new do |json|
       json.items items do |item|
